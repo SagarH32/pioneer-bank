@@ -86,32 +86,29 @@
             document.getElementById("depositAmount").value = "";
          })
 
-        //withdraw button event handler
-
-
-
+        
+        
+         //withdraw button event handler
         const withdrawBtn = document.getElementById("withdraw");
         withdrawBtn.addEventListener("click", function(){
             const withdrawAmount = document.getElementById("withdrawAmount").value;
             const withdrawNumber = parseFloat(withdrawAmount);
+            function totalBalanceMain(id, withdrawNumber){
+                const mainBalanceNumber = getNumber(id);
+                const totalMainBalance = mainBalanceNumber + withdrawNumber;
+                return totalMainBalance;
+            }
 
-            const currentWithdraw = document.getElementById("currentWithdraw").innerText;
-            const currentWithdrawNumber = parseFloat(currentWithdraw);
-            const totalWithdraw = withdrawNumber + currentWithdrawNumber;
+            const totalWithdraw = totalBalanceMain("currentWithdraw", withdrawNumber);
+
             document.getElementById("currentWithdraw").innerText = totalWithdraw;
 
-            const mainBalance = document.getElementById("currentBalance").innerText;
-            const mainBalanceNumber = parseFloat(mainBalance);
-            const totalMainBalance = mainBalanceNumber - withdrawNumber;
+            const totalMainBalance = totalBalanceMain("currentBalance", -1*withdrawNumber)
+
             document.getElementById("currentBalance").innerText = totalMainBalance;
     
             document.getElementById("withdrawAmount").value = "";
-         })
-
-
-    
-        
-    
+         })    
     </script>
 </body>
 </html>
